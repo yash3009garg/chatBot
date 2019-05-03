@@ -16,28 +16,34 @@ $("#user-input-form").on("submit", function (e) {
 
 
 
+  
 
-  fetch(' https://ge9da6vuga.execute-api.us-east-1.amazonaws.com/prod/chatbot-api',{
+fetch(' https://ge9da6vuga.execute-api.us-east-1.amazonaws.com/prod/chatbot-api',{
     method :'POST',
     headers : {
         'Accept' : 'application/json , text/plain, */*',
-         'Content-type' : 'application/json '
+         'Content-type' : 'application/json'
     },
-    body : btoa(message)
+    body : JSON.stringify(btoa(message))
   })
   .then((res) => res.json())
-  .then((data) => console.log(data));
-
+  .then((data) =>
 
   setTimeout(function () {
+    var snd = new Audio("data:audio/wav;base64," + JSON.parse(data).encodedVoice);
+
     outputArea.append(`
       <div class='user-message'>
         <div class='message'>
-          I'm like 20 lines of JavaScript I can't actually talk to you.
+          ${(JSON.parse(data).decodedString)}
+           ${ snd.play() }
+              
+          
+
         </div>
       </div>
     `);
-  }, 250);
+  }, 250))
 
   $("#user-input").val("");
 
