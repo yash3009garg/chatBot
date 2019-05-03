@@ -35,11 +35,11 @@ fetch(' https://ge9da6vuga.execute-api.us-east-1.amazonaws.com/prod/chatbot-api'
     outputArea.append(`
       <div class='user-message'>
         <div class='message'>
-          ${(JSON.parse(data).decodedString)}
-           ${ snd.play() }
-              
+          ${
+            snd.play(),
+           (JSON.parse(data).decodedString)
+          }
           
-
         </div>
       </div>
     `);
