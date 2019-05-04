@@ -26,6 +26,7 @@ body {
   display: flex;
   background: white;
   flex-direction: column;
+  overflow-y: auto
 }
 .chat-output > div {
   margin: 0 0 20px 0;
